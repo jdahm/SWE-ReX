@@ -162,10 +162,10 @@ class BashSession(Session):
             echo=False,
             env=dict(os.environ.copy(), **{"PS1": self._ps1, "PS2": "", "PS0": ""}),  # type: ignore
         )
-        time.sleep(0.3)
+        time.sleep(3)
         cmds = []
         if self.request.startup_source:
-            cmds += [f"source {path}" for path in self.request.startup_source] + ["sleep 0.3"]
+            cmds += [f"source {path}" for path in self.request.startup_source] + ["sleep 3"]
         cmds += self._get_reset_commands()
         cmd = " ; ".join(cmds)
         self.shell.sendline(cmd)
