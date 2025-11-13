@@ -210,11 +210,12 @@ def main():
     parser.add_argument("--host", default="0.0.0.0", help="Host to bind the server to")
     parser.add_argument("--port", type=int, default=8000, help="Port to run the server on")
     parser.add_argument("--auth-token", default="", help="token to authenticate requests", required=True)
+    parser.add_argument("--num-workers", default=1, help="number of workers")
 
     args = parser.parse_args(remaining_args)
     global AUTH_TOKEN
     AUTH_TOKEN = args.auth_token
-    uvicorn.run(app, host=args.host, port=args.port)
+    uvicorn.run(app, host=args.host, port=args.port, workers=args.num_workers)
 
 
 if __name__ == "__main__":
