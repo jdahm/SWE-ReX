@@ -51,6 +51,8 @@ class DockerDeploymentConfig(BaseModel):
     setups you might have to set it to http://host.docker.internal/ 
     (see https://github.com/SWE-agent/SWE-ReX/issues/253 for more information).
     """
+    num_workers: int = 1
+    """Number of uvicorn server threads."""
 
     type: Literal["docker"] = "docker"
     """Discriminator for (de)serialization/CLI. Do not change."""

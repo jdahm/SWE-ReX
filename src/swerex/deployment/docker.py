@@ -118,7 +118,7 @@ class DockerDeployment(AbstractDeployment):
         return str(uuid.uuid4())
 
     def _get_swerex_start_cmd(self, token: str, port: int) -> list[str]:
-        rex_args = f"--auth-token {token} --port {port}"
+        rex_args = f"--auth-token {token} --port {port} --num-workers {self._config.num_workers}"
         pipx_install = "python3 -m pip install pipx && python3 -m pipx ensurepath"
         if self._config.python_standalone_dir:
             cmd = f"{self._config.python_standalone_dir}/python3.11/bin/{REMOTE_EXECUTABLE_NAME} {rex_args}"
